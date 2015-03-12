@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "instructr",
+  "description": "Don't roll the dice. Get live ratemyprofessor ratings on the course catalog, so you know what you're getting into.",
+  "version": "0.1",
+
+  "content_scripts": [
+    {
+      "matches": ["http://registrar-prod.unet.brandeis.edu/registrar/schedule/classes/*"],
+      "js": ["myscript.js"]
+    }
+  ],
+
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
