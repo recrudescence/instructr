@@ -1,19 +1,29 @@
 {
   "manifest_version": 2,
 
-  "name": "instructr",
-  "description": "Don't roll the dice. Get live ratemyprofessor ratings on the course catalog, so you know what you're getting into.",
+  "name": "load the deis",
+  "description": "Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the Brandeis University course catalog. A convenient search link embeds below the professors name, for now. ",
   "version": "0.1",
+  "author": "Calvin Wang",
+
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon.png" },
+
+  "page_action": {
+     "default_icon": "icon.png"
+  },
 
   "content_scripts": [
     {
       "matches": ["http://registrar-prod.unet.brandeis.edu/registrar/schedule/classes/*"],
-      "js": ["myscript.js"]
+      "js": ["main.js"]
     }
   ],
 
-  "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
+  "background": {
+    "persistent": false,
+    "scripts": [ "eventPage.js"]
+  }
+
 }
