@@ -6,3 +6,5 @@ Don't blindly roll the dice on course selection -- view RateMyProfessor ratings 
 
 ###### changelog
 _v0.1_ - added basic link embed to a search link for each professor's last name.
+
+Available at the [Chrome Web Store](https://chrome.google.com/webstore/detail/load-the-deis/ibfiefnocplekjfjcbnohlepbkeodenn)!
