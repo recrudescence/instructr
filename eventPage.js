@@ -7,8 +7,8 @@ function showPageAction( tabId, changeInfo, tab ) {
 };
 chrome.tabs.onUpdated.addListener(showPageAction);
 
-// makes XMLHTTPRequest to server to get HTTP back!
-function xmlHTTPRequest(request, sender, callback) { 
+//function to make xmlhttprequests
+chrome.runtime.onMessage.addListener(function(request, sender, callback) { 
     var xhr = new XMLHttpRequest();
 
     xhr.onload = function() {
@@ -21,6 +21,4 @@ function xmlHTTPRequest(request, sender, callback) {
     xhr.open('GET', request.url, true);
     xhr.send();
     return true; // prevents the callback from being called too early on return   
-}
-
-chrome.runtime.onMessage.addListener(xmlHTTPRequest());
+});

@@ -26,22 +26,18 @@ function main() {
 
 			cell.profInfo	= cell.innerHTML;
 
-			var search 		= 'http://www.ratemyprofessors.com/search.jsp?queryoption=HEADER&queryBy=teacherName&schoolName=Brandeis+University&schoolID=129&query='
-								+ cell.lastName;
-			cell.innerHTML	+= '<br><a href="' + search + '" target="_blank"><img src="http://i.imgur.com/tXxl77D.png" height=32 width=32></a>';
-/*
-
 			cell.innerHTML	+= '<br><input type="button" class="getRatings" value="click for reviews!">';
 			
+			// search for last name first, because first names can be shortened
 			cell.searchLink	= 'http://www.ratemyprofessors.com/search.jsp?queryoption=HEADER&queryBy=teacherName&schoolName=Brandeis+University&schoolID=129&query='
-								+ cell.firstName + "%20" + cell.lastName;
+								+ cell.lastName;
 			cell.profLink	= '';
 			cell.clicked	= false;
 			cell.container 	= document.createElement('div');
-			cell.addEventListener('click', showRatings);*/
+			cell.addEventListener('click', showRatings);
 		}
 	}
-/*
+
 	function showRatings() {
 		if (this.clicked == true) {
 			this.container.innerHTML = '';
@@ -55,11 +51,28 @@ function main() {
 			var firstName   = this.firstName;
 			this.container.style.position = 'relative';
 			this.container.appendChild(popup);
+
 			console.log(this.searchLink);
+			
+			chrome.runtime.sendMessage({
+    			url: this.searchLink,
+			}, function(responseText) {
+				// temporary div so we can search its HTML
+				var tmp 		= document.createElement('div');
+				tmp.innerHTML	= responseText;
+				var results		= tmp.getElementsByClassName('listing PROFESSOR'); 
+   			
+				if (results.length < 1) {
+					console.log("not found");
+				} else{
+					console.log(results.innerHTML);
+				}
+   			})
+
 
 			this.innerHTML 	= this.profInfo + this.container.innerHTML + '<br><input type="button" class="getRatings" value="click to hide!">'
 		}
-	}*/
+	}
 }
 
 main();
