@@ -1,4 +1,4 @@
-/* load the deis v1.0
+/* load the deis v1.0.2
  * Calvin Wang
  * Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the 
  * Brandeis University course catalog. A convenient search link embeds below the professors name,
@@ -92,7 +92,7 @@ function main() {
 		console.log("%c\tNo such professor found!", "color: red");
 
 		// TODO: prepopulate the form for easier adding
-		popup.innerHTML = 'Professor not found!<br><a href="http://www.ratemyprofessors.com/AddTeacher.jsp" target="_blank">submit a rating?</a>';
+		popup.innerHTML = 'Professor not found!<br><a href="http://www.ratemyprofessors.com/AddTeacher.jsp" target="_blank">submit a rating?</a><br><a href="http://goo.gl/forms/W7ym0cxpHT" target="_blank">submit correction?</a>';
 		cell.innerHTML 	= cell.profInfo + cell.container.innerHTML;
 		cell.appendChild(cell.hide);
 	}
@@ -144,7 +144,7 @@ function main() {
 			var name 		= tmp2.getElementsByClassName('main')[0].innerText.split(' ')[1];
 			var found 		= -1;
 
-			if (cell.firstName.indexOf(name) >= 0 || (cell.firstName == 'James' && name == 'Jim')) {
+			if (cell.firstName.indexOf(name) >= 0 || (cell.firstName === 'James' && name === 'Jim')) {
 				found = i;
 				console.log("%c\tName matched with RMP result [" + name
 					+ "] and BCC result [" + cell.firstName + "] at cell [" + i + "]", 
