@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "load the deis",
-  "description": "Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the Brandeis University course catalog. A convenient search link embeds below the professors name, for now. ",
-  "version": "0.1",
+  "description": "Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the Brandeis University course catalog.",
+  "version": "1.0",
   "author": "Calvin Wang",
 
   "icons": { "16": "icn/icon16.png",
@@ -21,6 +21,8 @@
     }
   ],
 
+  "permissions": [ "http://www.ratemyprofessors.com/*", "tabs" ],
+  
   "background": {
     "persistent": false,
     "scripts": [ "eventPage.js"]
