@@ -1,4 +1,4 @@
-/* load the deis v0.5
+/* load the deis v1.0
  * Calvin Wang
  * Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the 
  * Brandeis University course catalog. A convenient search link embeds below the professors name,
