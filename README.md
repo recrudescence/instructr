@@ -13,3 +13,5 @@ Don't blindly roll the dice on course selection -- view RateMyProfessor ratings 
 - add same functionality to brandeis.schdl.net
 
 Available at the [Chrome Web Store](https://chrome.google.com/webstore/detail/load-the-deis/ibfiefnocplekjfjcbnohlepbkeodenn)!
+
+Submit corrections [here](http://goo.gl/forms/W7ym0cxpHT)!
