@@ -1,7 +1,11 @@
-console.log("[load the deis v0.1 event page loaded]");
+/* load the deis v1.0
+ * Calvin Wang
+ */
+
+console.log("[load the deis v1.0 event page loaded]");
 //displays icon in address bar when script is active
 function showPageAction( tabId, changeInfo, tab ) {
-    if(tab.url == "http://registrar-prod.unet.brandeis.edu/registrar/schedule/classes/*"){
+    if(tab.url == "registrar-prod.unet.brandeis.edu/registrar/schedule/classes/*"){
         chrome.pageAction.show(tabId);
     }
 };
