@@ -65,6 +65,7 @@ function main() {
 			} else {
 				console.log(profs);
 
+
 				found = findProfessor(profs, cell);
 
 				if (found == -1) {
@@ -143,7 +144,7 @@ function main() {
 			var name 		= tmp2.getElementsByClassName('main')[0].innerText.split(' ')[1];
 			var found 		= -1;
 
-			if (cell.firstName.indexOf(name) >= 0) {
+			if (cell.firstName.indexOf(name) >= 0 || (cell.firstName == 'James' && name == 'Jim')) {
 				found = i;
 				console.log("%c\tName matched with RMP result [" + name
 					+ "] and BCC result [" + cell.firstName + "] at cell [" + i + "]", 
