@@ -7,6 +7,8 @@ Don't blindly roll the dice on course selection -- view RateMyProfessor ratings 
 ###### changelog
 - _v0.1_ - added basic link embed to a search link for each professor's last name.
 - _v1.0_ - added full rating display underneath professor name, with link to actual RateMyProfessor page.
+- _v1.0.2_ - added manual entry for "James" as "Jim" when searching.
+- _v1.0.3_ - added a little welcome note on registrar pages.
 
 ###### todo
 - prepropulate the 'add ratings' page when a professor has no rating (for convenience, cuz this extension is all about that convenience, yo)
