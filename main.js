@@ -20,8 +20,8 @@ function main() {
 	function parseCells(rows) {
 
 		for (var i = 0; i < rows.length; i++) {
-			var cell 				= rows[i].children[5];
-			var fullName 		= cell.innerText.replace(',', '');
+			var cell 		= rows[i].children[5];
+			var fullName 	= cell.innerText.replace(',', '');
 			profs[fullName] = fullName;
 
 			var name = profs[fullName].split(' ');
@@ -30,16 +30,16 @@ function main() {
 			if (name[0] === "Novack")	cell.lastName = 'Novak';
 			else 											cell.lastName = name[0];
 
-			cell.profInfo		= cell.innerHTML;
+			cell.profInfo	= cell.innerHTML;
 
 			cell.innerHTML 	= cell.profInfo
-											+ '<br><input type="button" class="getRatings" value="click for reviews!">';
+							+ '<br><input type="button" class="getRatings" value="click for reviews!">';
 
 			// search for last name first, because first names can be shortened
 			cell.searchLink	= 'http://www.ratemyprofessors.com/search.jsp?queryoption=HEADER&queryBy=teacherName&schoolName=Brandeis+University&schoolID=129&query='
-											+ cell.lastName;
-			cell.profLink		= '';
-			cell.clicked		= false;
+							+ cell.lastName;
+			cell.profLink	= '';
+			cell.clicked	= false;
 			cell.container 	= document.createElement('div');
 			cell.addEventListener('click', showRatings);
 		}
@@ -62,9 +62,9 @@ function main() {
 			url: cell.searchLink,
 		}, function(responseText) {
 			// temporary div so we can search its HTML
-			var tmp 			= document.createElement('div');
+			var tmp 		= document.createElement('div');
 			tmp.innerHTML	= responseText;
-			var profs			= tmp.getElementsByClassName('listing PROFESSOR'); 
+			var profs		= tmp.getElementsByClassName('listing PROFESSOR'); 
 
 			if (profs.length < 1) {
 				notFound(popup, cell);
@@ -104,20 +104,20 @@ function main() {
 
 	function buildRatingDisplay(responseText, tmp, popup, cell) {
 
-		tmp 					= document.createElement('div');
+		tmp 			= document.createElement('div');
 		tmp.innerHTML	= responseText;
 
 		var overalls	= tmp.getElementsByClassName('grade');
-		var miscs			= tmp.getElementsByClassName('rating');
+		var miscs		= tmp.getElementsByClassName('rating');
 
 		var overallQuality	= overalls[0].innerText;
-		var averageGrade		= overalls[1].innerText;
-		var hotness					= 'http://www.ratemyprofessors.com/'
-												+ overalls[2].getElementsByTagName('img')[0].src.slice(39);
+		var averageGrade	= overalls[1].innerText;
+		var hotness			= 'http://www.ratemyprofessors.com/'
+							+ overalls[2].getElementsByTagName('img')[0].src.slice(39);
 
 		var helpfulness	= miscs[0].innerText;
-		var clarity			= miscs[1].innerText;
-		var easiness		= miscs[2].innerText;
+		var clarity		= miscs[1].innerText;
+		var easiness	= miscs[2].innerText;
 
 		tmp.remove();
 
@@ -126,11 +126,11 @@ function main() {
 		var linkToPage	= document.createElement('div');
 
 		overallDiv.innerHTML	= '<b>Quality:</b> ' + overallQuality + '<br>'
-											 		+ '<b>Average Grade:</b> ' + averageGrade + '<br>'
-											 		+ '<b>Hotness:</b> <img src="' + hotness + '" height=10px><br>';
-		miscDiv.innerHTML			= '<b>Helpfulness:</b> ' + helpfulness + '<br>'
-											 		+ '<b>Clarity:</b> ' + clarity + '<br>'
-											 		+ '<b>Easiness:</b> ' + easiness;
+						 		+ '<b>Average Grade:</b> ' + averageGrade + '<br>'
+						 		+ '<b>Hotness:</b> <img src="' + hotness + '" height=10px><br>';
+		miscDiv.innerHTML		= '<b>Helpfulness:</b> ' + helpfulness + '<br>'
+						 		+ '<b>Clarity:</b> ' + clarity + '<br>'
+						 		+ '<b>Easiness:</b> ' + easiness;
 		linkToPage.innerHTML	= '<a href="' + this.profLink + '" target="_blank"><i>details</i></a>';
 
 		cell.container.appendChild(overallDiv);
@@ -144,10 +144,10 @@ function main() {
 	function findProfessor(profs, cell) {
 		for (var i = 0; i < profs.length; i++) {
 			// make another temp div so we can analyze its HTML
-			var tmp2 				= document.createElement('div');
+			var tmp2 		= document.createElement('div');
 			tmp2.innerHTML 	= profs[i].innerHTML;
-			var name 				= tmp2.getElementsByClassName('main')[0].innerText.split(' ')[1];
-			var found 			= -1;
+			var name 		= tmp2.getElementsByClassName('main')[0].innerText.split(' ')[1];
+			var found 		= -1;
 
 			if (cell.firstName.indexOf(name) >= 0 || (cell.firstName === 'James' && name === 'Jim')) {
 				found = i;
@@ -180,7 +180,7 @@ function main() {
 			+ " <a href=\"https://apps.brandeis.edu//ceg/index\"><b>Brandeis Course Evaluations</b></a>" 
 			+ " database." 
 
-			+ " In the meantime -- feel free to let me know at <b>spiderman</b>(at)<b>brandeis.edu</b> if" 
+			+ " In the meantime -- feel free to let me know at <b>spiderman@brandeis.edu</b> if" 
 			+ " you have any comments or suggestions!<br> ~*~ tell your friends ~*~<br>" 
 			+ "	&nbsp;&nbsp;&nbsp;Cheers! ~Calvin"
 			+ "</div>";
