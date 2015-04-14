@@ -6,10 +6,11 @@ Don't blindly roll the dice on course selection -- view RateMyProfessor ratings 
 - _v1.0_ - added full rating display underneath professor name, with link to actual RateMyProfessor page.
 - _v1.0.2_ - added manual entry for "James" as "Jim" when searching.
 - _v1.0.3_ - added a little welcome note on registrar pages.
+- _v1.1_ - added schdl functionality. __very rushed__ so the code simply copied over -- refactoring is upcoming.
 
 ###### todo
 - prepopulate the 'add ratings' page when a professor has no rating (for convenience, cuz this extension is all about that convenience, yo)
-- add same functionality to brandeis.schdl.net
+- ~~add same functionality to brandeis.schdl.net~~
 
 Available at the [Chrome Web Store](https://chrome.google.com/webstore/detail/load-the-deis/ibfiefnocplekjfjcbnohlepbkeodenn)!
 
