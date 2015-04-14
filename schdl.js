@@ -8,27 +8,25 @@
 function main() {
 	var ltd_v = '1.1'
 
-	console.log("%c[load the deis v" + ltd_v + "]", "color: green");
+	console.log("%c[load the deis v" + ltd_v + "s]", "color: green");
 	var profs = Object(); // hash
 
 	insertNote();
 
-	parseCells(document.getElementsByClassName("rowfirst"));
-	parseCells(document.getElementsByClassName("rowodd"));
-	parseCells(document.getElementsByClassName("row"));
+	parseCells(document.getElementsByClassName("schdl-instructors"));
 	
-	function parseCells(rows) {
+	function parseCells(instructors) {
 
-		for (var i = 0; i < rows.length; i++) {
-			var cell 		= rows[i].children[5];
-			var fullName 	= cell.innerText.replace(',', '');
+		for (var i = 0; i < instructors.length; i++) {
+			var cell 		= instructors[i].getElementsByClassName('ng-binding')[0];
+			var fullName 	= cell.getElementsByTagName('a')[0].innerText.replace(',', '');
 			profs[fullName] = fullName;
 
 			var name = profs[fullName].split(' ');
-			cell.firstName	= name[1];
+			cell.firstName	= name[0];
 
 			if (name[0] === "Novack")	cell.lastName = 'Novak';
-			else 											cell.lastName = name[0];
+			else 						cell.lastName = name[name.length-1];
 
 			cell.profInfo	= cell.innerHTML;
 
@@ -81,7 +79,7 @@ function main() {
 				}
 
 				var link = profs[found].getElementsByTagName('a');
-				this.profLink = 'http://www.ratemyprofessors.com' + link[0].toString().slice(39);
+				this.profLink = 'http://www.ratemyprofessors.com' + link[0].toString().slice(26);
 
 				console.log("ACCESS: " + this.profLink);
 
@@ -98,7 +96,7 @@ function main() {
 		console.log("%c\tNo such professor found!", "color: red");
 
 		// TODO: prepopulate the form for easier adding
-		popup.innerHTML = 'Professor not found!<br><a href="http://www.ratemyprofessors.com/AddTeacher.jsp" target="_blank">submit a rating?</a><br><a href="http://goo.gl/forms/W7ym0cxpHT" target="_blank">submit correction?</a>';
+		popup.innerHTML = '<b>Professor not found!</b><br>Submit a <a href="http://www.ratemyprofessors.com/AddTeacher.jsp" target="_blank">rating</a> or <a href="http://goo.gl/forms/W7ym0cxpHT" target="_blank">correction?</a>';
 		cell.innerHTML 	= cell.profInfo + cell.container.innerHTML;
 	}
 
@@ -113,7 +111,7 @@ function main() {
 		var overallQuality	= overalls[0].innerText;
 		var averageGrade	= overalls[1].innerText;
 		var hotness			= 'http://www.ratemyprofessors.com/'
-							+ overalls[2].getElementsByTagName('img')[0].src.slice(39);
+							+ overalls[2].getElementsByTagName('img')[0].src.slice(26);
 
 		var helpfulness	= miscs[0].innerText;
 		var clarity		= miscs[1].innerText;
@@ -125,11 +123,11 @@ function main() {
 		var miscDiv			= document.createElement('div');
 		var linkToPage	= document.createElement('div');
 
-		overallDiv.innerHTML	= '<b>Quality:</b> ' + overallQuality + '<br>'
-						 		+ '<b>Average Grade:</b> ' + averageGrade + '<br>'
-						 		+ '<b>Hotness:</b> <img src="' + hotness + '" height=10px><br>';
-		miscDiv.innerHTML		= '<b>Helpfulness:</b> ' + helpfulness + '<br>'
-						 		+ '<b>Clarity:</b> ' + clarity + '<br>'
+		overallDiv.innerHTML	= '<b>Quality:</b> ' + overallQuality + ' '
+						 		+ '<b>Average Grade:</b> ' + averageGrade + ' '
+						 		+ '<b>Hotness:</b> <img src="' + hotness + '" height=15px> ';
+		miscDiv.innerHTML		= '<b>Helpfulness:</b> ' + helpfulness + ' '
+						 		+ '<b>Clarity:</b> ' + clarity + ' '
 						 		+ '<b>Easiness:</b> ' + easiness;
 		linkToPage.innerHTML	= '<a href="' + this.profLink + '" target="_blank"><i>details</i></a>';
 
@@ -163,8 +161,10 @@ function main() {
 	function insertNote() {
 		var notes = document.createElement('div');
 
-		notes.innerHTML = "</div><h2>Notes for [load-the-deis v" + ltd_v + "] Users</h2>"
-			+ "<div class=\"notescontent\">"
+		notes.innerHTML = "</div><br><b>Notes for [load-the-deis v" + ltd_v + "] Users</b>"
+			+ "<div class=\"notescontent\"><small>"
+			+ " <font color=red>NOTE FOR SCHDL: you have to reload the page if you navigate"
+			+ " to another class page. This is because schdl is weird.</font><br>"
 			+ " Hello and thank you for using my first ever "
 			+ " Chrome extension! I hope you like it.<br>" 
 			+ " If you notice a professor is listed on the course catalog and does not" 
@@ -174,23 +174,37 @@ function main() {
 			+ " name or spelling :/ For example, Professor Morris is 'James' here and 'Jim' on RMP, and "
 			+ " Professor Novack is spelled Novack here but Novak on RMP.<br>" 
 
-			+ " Aside from that, I hope you enjoy the extension! I plan to add the same" 
-			+ " features to <a href=\"http://brandeis.schdl.net\"><b>schdl</b></a>" 
-			+ " and perhaps add an option for pulling rating information from the official" 
+			+ " Aside from that, I hope you enjoy the extension!"
+			+ " I may add an option for pulling rating information from the official" 
 			+ " <a href=\"https://apps.brandeis.edu//ceg/index\"><b>Brandeis Course Evaluations</b></a>" 
 			+ " database." 
 
 			+ " In the meantime -- feel free to let me know at <b>spiderman@brandeis.edu</b> if" 
 			+ " you have any comments or suggestions!<br> ~*~ tell your friends ~*~<br>" 
-			+ "	&nbsp;&nbsp;&nbsp;Cheers! ~Calvin"
+			+ "	&nbsp;&nbsp;&nbsp;Cheers! ~Calvin</small>"
 			+ "</div>";
 
-		document.getElementById('contentText').insertBefore(notes, document.getElementById('classes-list'));
+		document.getElementsByClassName('breadcrumb')[0].appendChild(notes);
 
 	}
 
 }
 
-if (window.location.href.split('/')[2] == "registrar-prod.unet.brandeis.edu") {
+if (window.location.href.split('/')[2] == "brandeis.schdl.net") {
+	// Select all links
+	//var allLinks = document.querySelectorAll('a[href]');
+	var allLinks = document.links;
+
+	// Bind the event handler to each link individually
+	for (var i = 0, n = allLinks.length; i < n; i++) {
+	    //allLinks[i].addEventListener('click', function (event) {});
+	    allLinks[i].onclick = function () {
+	        if (window.location.href.split('/')[3] == "course") {
+	        	window.location.href = allLinks[i];
+	        	console.log('reloaded')
+	        }
+	    };
+	}
+
 	main();
 }
