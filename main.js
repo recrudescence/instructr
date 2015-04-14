@@ -1,4 +1,4 @@
-/* load the deis v1.0.3
+/* load the deis v1.0.4
  * Calvin Wang
  * Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the 
  * Brandeis University course catalog. A convenient search link embeds below the professors name,
@@ -6,7 +6,7 @@
  */
 
 function main() {
-	var ltd_v = '1.0.3'
+	var ltd_v = '1.0.4'
 
 	console.log("%c[load the deis v" + ltd_v + "]", "color: green");
 	var profs = Object(); // hash

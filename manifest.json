@@ -3,7 +3,7 @@
 
   "name": "load the deis",
   "description": "Don't blindly roll the dice on course selection -- view RateMyProfessor ratings on the Brandeis University course catalog.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Calvin Wang",
 
   "icons": { "16": "icn/icon16.png",
@@ -16,7 +16,7 @@
 
   "content_scripts": [
     {
-      "matches": ["http://registrar-prod.unet.brandeis.edu/registrar/schedule/classes/*", "https://brandeis.schdl.net/course/*"], 
+      "matches": ["http://registrar-prod.unet.brandeis.edu/registrar/schedule/*", "https://brandeis.schdl.net/course/*"], 
       "js": ["jquery.js", "main.js"]
     }
   ],
